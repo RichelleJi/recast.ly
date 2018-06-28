@@ -3,16 +3,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: window.exampleVideoData,
-      video: window.exampleVideoData[0]
-    this.handleClick = this.handleClick.bind(this);
+      video: window.exampleVideoData[0],
+      
     };
+      this.handleClick = this.handleClick.bind(this);
     
   }
   
- handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+ handleClick(videoEvent) {
+    this.setState({video: videoEvent})
+    // this.setState(
+    // prevState => ({
+    //   isToggleOn: !prevState.isToggleOn
+    // }));
+    // var title = event.target
+    console.log(videoEvent)
+    
   }
 
   
@@ -29,7 +35,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.video}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videos}/>
+            <VideoList videos={this.state.videos} clickFunction = {this.handleClick}/>
           </div>
         </div>
       </div>
