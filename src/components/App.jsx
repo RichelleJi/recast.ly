@@ -4,9 +4,17 @@ class App extends React.Component {
     this.state = {
       videos: window.exampleVideoData,
       video: window.exampleVideoData[0]
+    this.handleClick = this.handleClick.bind(this);
     };
     
   }
+  
+ handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+
   
   render() {
     return (
