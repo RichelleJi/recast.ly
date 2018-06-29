@@ -4,6 +4,7 @@ class App extends React.Component {
     this.state = {
       videos: window.exampleVideoData,
       video: window.exampleVideoData[0],
+      keyTerm: '';
       
     };
       this.handleClick = this.handleClick.bind(this);
@@ -20,6 +21,11 @@ class App extends React.Component {
     console.log(videoEvent)
     
   }
+  
+ inputSearch(realTerm) {
+    this.setState({keyTerm: realTerm})
+    console.log(videoEvent)
+  }
 
   
   render() {
@@ -27,7 +33,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> <Search /></h5></div>
+            <div video={this.state.keyTerm}><Search /></div>
           </div>
         </nav>
         <div className="row">
