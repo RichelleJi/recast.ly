@@ -4,11 +4,10 @@ class App extends React.Component {
     this.state = {
       videos: window.exampleVideoData,
       video: window.exampleVideoData[0],
-      keyTerm: '';
-      
+      keyTerm: '',
     };
       this.handleClick = this.handleClick.bind(this);
-    
+      this.handleChange = this.handleChange.bind(this);
   }
   
  handleClick(videoEvent) {
@@ -18,22 +17,31 @@ class App extends React.Component {
     //   isToggleOn: !prevState.isToggleOn
     // }));
     // var title = event.target
-    console.log(videoEvent)
+    // console.log(videoEvent)
     
   }
-  
- inputSearch(realTerm) {
-    this.setState({keyTerm: realTerm})
-    console.log(videoEvent)
-  }
 
+   handleChange(realTerm) {
+    var query = $('.form-control').val();
+  
+    var app = this
+    var callback = function(data){
+      app.setState(
+      {
+        videos: data.items,
+        video: data.items[0]
+      })
+    }
+      // console.log(this);
+   window.searchYouTube({query: query, key: window.YOUTUBE_API_KEY, max: 5}, callback)
+  }
   
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div video={this.state.keyTerm}><Search /></div>
+            <Search handleChange = {this.handleChange}/>
           </div>
         </nav>
         <div className="row">
@@ -52,6 +60,6 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
-
+var searchYouTube;
 // <VideoList videos={window.exampleVideoData}/>
 //line 12: React.createElement(VideoList, { videos: window.exampleVideoData });

@@ -13,8 +13,10 @@ var searchYouTube = (options, callback) => {
     type: 'GET',
     data: newOptions, 
     success: function (data) {
+      callback(data);
     }
+    // error: function () {
+    //   alert.('')
+    // }
   });
 };
-
-window.searchYouTube = searchYouTube;
